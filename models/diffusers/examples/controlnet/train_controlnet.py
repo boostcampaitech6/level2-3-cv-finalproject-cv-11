@@ -33,6 +33,7 @@ from accelerate import Accelerator
 from accelerate.logging import get_logger
 from accelerate.utils import ProjectConfiguration, set_seed
 from datasets import load_dataset
+from custom_dataset import MyDataset
 from huggingface_hub import create_repo, upload_folder
 from packaging import version
 from PIL import Image
@@ -242,7 +243,6 @@ These are controlnet weights trained on {base_model} with new type of conditioni
         "text-to-image",
         "diffusers",
         "controlnet",
-        "diffusers-training",
     ]
     model_card = populate_model_card(model_card, tags=tags)
 
@@ -915,12 +915,12 @@ def main(args):
         weight_decay=args.adam_weight_decay,
         eps=args.adam_epsilon,
     )
-
+    
     train_dataset = make_train_dataset(args, tokenizer, accelerator)
 
     train_dataloader = torch.utils.data.DataLoader(
         train_dataset,
-        shuffle=True,
+        shuffle=False,
         collate_fn=collate_fn,
         batch_size=args.train_batch_size,
         num_workers=args.dataloader_num_workers,
@@ -1026,6 +1026,19 @@ def main(args):
         # Only show the progress bar once on each machine.
         disable=not accelerator.is_local_main_process,
     )
+    
+    wandb_image = []
+    for step, batch in enumerate(train_dataloader):
+        pixel_values = batch['pixel_values']
+        conditioning_pixel_values = batch['conditioning_pixel_values']
+        for i in range(4):
+            wandb_image.append(pixel_values[i])
+            wandb_image.append(conditioning_pixel_values[i])
+        if step == 0:
+            break
+    for i, image_tensor in enumerate(wandb_image):
+        # wandb.Image()를 사용하여 개별 이미지를 로깅
+        wandb.log({f"example_image_{i}": wandb.Image(image_tensor)}, step = 0)
 
     image_logs = None
     for epoch in range(first_epoch, args.num_train_epochs):
