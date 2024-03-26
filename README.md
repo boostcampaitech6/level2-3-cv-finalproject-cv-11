@@ -18,3 +18,5 @@
 | <img src="./img/viton_input.jpg" width="300" height="400"/> <img src="./img/output_image.jpg"  width="300" height="400"/> | → | <img src="./img/viton_output.png" width="300" height="400"/> |
 
 ## Service
+<img src="./img/service_architecture.png" />
+
