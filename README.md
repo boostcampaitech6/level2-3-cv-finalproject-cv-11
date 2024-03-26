@@ -13,8 +13,8 @@
 ## Result
 | Input | → | Output |
 |--------|---|-------|
-| <div align="center"> <img src="./img/input_image.jpg" width="300" height="400"/> </div > | → | <img src="./img/output_image.jpg"  width="300" height="400"/> |
-| <div align="center"> "The cloth is a pink shirt, and it is made of cotton." </div > |
+| <img src="./img/input_image.jpg" width="300" height="400"/> | → | <img src="./img/output_image.jpg"  width="300" height="400"/> |
+| "The cloth is a pink shirt, and it is made of cotton." |
 | <img src="./img/viton_input.jpg" width="300" height="400"/> <img src="./img/output_image.jpg"  width="300" height="400"/> | → | <img src="./img/viton_output.png" width="300" height="400"/> |
 
 ## Service
