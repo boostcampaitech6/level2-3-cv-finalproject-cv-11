@@ -15,7 +15,7 @@
 |--------|---|-------|
 | <img src="./img/input_image.jpg" width="300" height="400"/> | → | <img src="./img/output_image.jpg"  width="300" height="400"/> |
 | "The cloth is a pink shirt, and it is made of cotton." |
-| <img src="./img/viton_input.jpg" width="300" height="400"/> <img src="./img/output_image.jpg"  width="300" height="400"/> | → | <img src="./img/viton_output.png" width="300" height="400"/> |
+| <img src="./img/viton_input.jpg" width="150" height="200"/> <img src="./img/output_image.jpg"  width="150" height="200"/> | → | <img src="./img/viton_output.png" width="300" height="400"/> |
 
 ## Service
 <img src="./img/service_architecture.png" />
